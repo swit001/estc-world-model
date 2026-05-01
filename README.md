@@ -22,6 +22,16 @@ Tool-calling alone does not make an AI agent production-ready. A tool call can c
 
 `estc-world-model` provides a minimal runtime for that missing layer.
 
+## Runtime flow
+
+```mermaid
+flowchart TD
+    A["WorldModel.propose()"] --> B["Validate\nentity · transition · state"]
+    B -->|valid| C["Constraint guards"]
+    B -->|fails| DENY(["DENY"])
+    C -->|passed| D["Commit state"]
+    C -->|fails| DE(["DENY / ESCALATE"])
+    D --> ALLOW(["ALLOW · VerdictOutcome"])
 ## Installation
 
 ```bash
