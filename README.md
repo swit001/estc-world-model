@@ -136,16 +136,18 @@ Example output:
 
 ```mermaid
 graph TD
-    E["**Entity**<br/>executable object"] -->|occupies| S["**State**<br/>committed coordinate"]
-    T["**Transition**<br/>declared path"] -->|entity_type| E
+    E["Entity<br/>executable object"] -->|occupies| S["State<br/>committed coordinate"]
+    T["Transition<br/>declared path"] -->|entity_type| E
     T -->|from / to| S
-    C["**Constraint**<br/>guard predicate"] -->|guards| T
+    C["Constraint<br/>guard predicate"] -->|guards| T
     C -->|evaluates| E
 
     style E fill:#F2F2EA,stroke:#307FE2,color:#1E2549,stroke-width:2px
     style S fill:#EAF8F1,stroke:#26C981,color:#1E2549,stroke-width:2px
     style T fill:#F2F2EA,stroke:#1E2549,color:#1E2549,stroke-width:1.5px
     style C fill:#FFF8D6,stroke:#FFDD29,color:#1E2549,stroke-width:2px
+```
+
 ## Core concepts
 
 ### Entity
