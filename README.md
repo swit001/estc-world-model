@@ -245,7 +245,13 @@ This repository starts with a minimal commerce refund example implemented entire
 python examples/commerce_refund/demo.py
 ```
 
-Declarative YAML world definitions are intentionally not included in `examples/` yet. A YAML loader is planned for `0.2.0`; until then, the executable source of truth is the Python API.
+YAML world definitions are supported from v0.2.0.
+
+Run the YAML-based demo:
+
+```bash
+python examples/commerce_refund/demo_yaml.py
+```
 
 Planned examples:
 
@@ -278,8 +284,7 @@ world = load_world_from_yaml("examples/commerce_refund/world.yaml")
 
 verdict = world.propose(
     entity_id="order_123",
-    transition_name="RequestRefund",
-)
+    transition="RequestRefund",
 )
 ```
 
