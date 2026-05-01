@@ -278,9 +278,23 @@ Planned examples:
 `estc-world-model` can load declarative ESTC world definitions from YAML.
 
 ```python
-from estc_world_model import load_world_from_yaml
+from estc_world_model import Entity, load_world_from_yaml
 
-world = load_world_from_yaml("examples/commerce_refund/world.yaml")
+order = Entity(
+    id="order_123",
+    type="Order",
+    state="Delivered",
+    attributes={
+        "days_since_delivery": 5,
+        "item_refundable": True,
+        "refund_status": "none",
+    },
+)
+
+world = load_world_from_yaml(
+    "examples/commerce_refund/world.yaml",
+    entities=[order],
+)
 
 verdict = world.propose(
     entity_id="order_123",
