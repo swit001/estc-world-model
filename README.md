@@ -26,12 +26,14 @@ Tool-calling alone does not make an AI agent production-ready. A tool call can c
 
 ```mermaid
 flowchart TD
-    A["WorldModel.propose()"] --> B["Validate\nentity · transition · state"]
+    A["WorldModel.propose()"] --> B["Validate<br/>entity · transition · state"]
     B -->|valid| C["Constraint guards"]
-    B -->|fails| DENY(["DENY"])
+    B -->|fails| DENY["DENY"]
     C -->|passed| D["Commit state"]
-    C -->|fails| DE(["DENY / ESCALATE"])
-    D --> ALLOW(["ALLOW · VerdictOutcome"])
+    C -->|fails| DE["DENY / ESCALATE"]
+    D --> ALLOW["ALLOW · VerdictOutcome"]
+```
+
 ## Installation
 
 ```bash
