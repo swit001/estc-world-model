@@ -237,4 +237,4 @@ The Agentic World Model framework defines the methodology, canvas, and design la
 
 ## License
 
-MIT
+Apache 2.0
