@@ -280,3 +280,10 @@ Apache 2.0
 This repository is the runtime engine for executable world models.
 
 If [`agentic-world-model`](https://github.com/swit001/agentic-world-model) is the canvas for designing the world, `estc-world-model` is the engine that turns Entity-State-Transition-Constraint design into executable agent behavior.
+
+
+## Runtime companion
+
+This repository is the blueprint for drawing an executable world model.
+
+If `agentic-world-model` is the canvas for designing the world, [`estc-world-model`](https://github.com/swit001/estc-world-model) is the runtime engine that brings that design to life in code.
