@@ -25,6 +25,7 @@ Tool-calling alone does not make an AI agent production-ready. A tool call can c
 ## Runtime flow
 
 ```mermaid
+%%{init: {"theme": "base", "themeVariables": {"primaryColor": "#F2F2EA", "primaryTextColor": "#1E2549", "primaryBorderColor": "#307FE2", "lineColor": "#1E2549", "secondaryColor": "#EAF8F1", "tertiaryColor": "#FFF8D6", "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"}} }%%
 flowchart TD
     A["WorldModel.propose()"] --> B["Validate<br/>entity · transition · state"]
     B -->|valid| C["Constraint guards"]
@@ -32,8 +33,18 @@ flowchart TD
     C -->|passed| D["Commit state"]
     C -->|fails| DE["DENY / ESCALATE"]
     D --> ALLOW["ALLOW · VerdictOutcome"]
-```
 
+    classDef start fill:#F2F2EA,stroke:#307FE2,color:#1E2549,stroke-width:2px;
+    classDef process fill:#F2F2EA,stroke:#1E2549,color:#1E2549,stroke-width:1.5px;
+    classDef allow fill:#EAF8F1,stroke:#26C981,color:#1E2549,stroke-width:2px;
+    classDef warn fill:#FFF8D6,stroke:#FFDD29,color:#1E2549,stroke-width:2px;
+    classDef deny fill:#FFF0EC,stroke:#F7694C,color:#1E2549,stroke-width:2px;
+
+    class A start;
+    class B,C,D process;
+    class ALLOW allow;
+    class DE warn;
+    class DENY deny;
 ## Installation
 
 ```bash
