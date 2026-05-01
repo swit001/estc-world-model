@@ -31,7 +31,7 @@ pip install estc-world-model
 For local development:
 
 ```bash
-git clone https://github.com/YOUR_ORG/estc-world-model.git
+git clone https://github.com/swit001/estc-world-model.git
 cd estc-world-model
 pip install -e .
 ```
