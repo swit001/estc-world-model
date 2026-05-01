@@ -265,25 +265,13 @@ Planned examples:
 - [ ] CLI: `estc validate world.yaml`
 - [ ] Domain templates for commerce, marketing, and HR
 
-## Relationship to Agentic World Model
 
-`agentic-world-model` is the map. `estc-world-model` is the engine.
-
-The Agentic World Model framework defines the methodology, canvas, and design language for agentic systems. `estc-world-model` implements the minimal executable layer: entities, states, transitions, constraints, commits, and verdicts.
-
-## License
-
-Apache 2.0
-
-## Design companion
+## Design Companion
 
 This repository is the runtime engine for executable world models.
 
 If [`agentic-world-model`](https://github.com/swit001/agentic-world-model) is the canvas for designing the world, `estc-world-model` is the engine that turns Entity-State-Transition-Constraint design into executable agent behavior.
 
+## License
 
-## Runtime companion
-
-This repository is the blueprint for drawing an executable world model.
-
-If `agentic-world-model` is the canvas for designing the world, [`estc-world-model`](https://github.com/swit001/estc-world-model) is the runtime engine that brings that design to life in code.
+Apache 2.0
