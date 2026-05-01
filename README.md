@@ -274,3 +274,9 @@ The Agentic World Model framework defines the methodology, canvas, and design la
 ## License
 
 Apache 2.0
+
+## Design companion
+
+This repository is the runtime engine for executable world models.
+
+If [`agentic-world-model`](https://github.com/swit001/agentic-world-model) is the canvas for designing the world, `estc-world-model` is the engine that turns Entity-State-Transition-Constraint design into executable agent behavior.
