@@ -258,13 +258,41 @@ Planned examples:
 - [x] Pydantic models for Entity, Transition, Constraint, VerdictOutcome
 - [x] Minimal transition validation and commit runtime
 - [x] Commerce refund example
-- [ ] YAML loader for declarative world definitions
+- [x] Marketing budget example
+- [x] YAML loader for declarative world definitions
 - [ ] JSON Schema export
 - [ ] Belief vs committed state example
 - [ ] NWM → SWM runtime demo
 - [ ] CLI: `estc validate world.yaml`
 - [ ] Domain templates for commerce, marketing, and HR
 
+
+## YAML loader
+
+`estc-world-model` can load declarative ESTC world definitions from YAML.
+
+```python
+from estc_world_model import load_world_from_yaml
+
+world = load_world_from_yaml("examples/commerce_refund/world.yaml")
+
+verdict = world.propose(
+    entity_id="order_123",
+    transition_name="RequestRefund",
+)
+)
+```
+
+YAML constraint rules use a deliberately small safe expression subset:
+
+- `field == value`
+- `field != value`
+- `field <= value`
+- `field >= value`
+- `field < value`
+- `field > value`
+
+No `eval()` is used. Rules are parsed into explicit Python callables.
 
 ## Design Companion
 
