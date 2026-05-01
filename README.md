@@ -40,6 +40,8 @@ flowchart TD
     style ALLOW fill:#EAF8F1,stroke:#26C981,color:#1E2549,stroke-width:2px
     style DENY fill:#FFF0EC,stroke:#F7694C,color:#1E2549,stroke-width:2px
     style DE fill:#FFF8D6,stroke:#FFDD29,color:#1E2549,stroke-width:2px
+```
+
 ## Installation
 
 ```bash
