@@ -1,12 +1,47 @@
+world:
+  name: Marketing Budget World
+  version: 0.3.0
+
 transitions:
-  - name: AllocateBudget
+  - name: ActivateCampaign
+    entity_type: Campaign
+    from_state: Draft
+    to_state: Active
+    description: Activate a campaign that has been reviewed and approved.
+
+  - name: PauseCampaign
     entity_type: Campaign
     from_state: Active
-    to_state: BudgetAllocated
+    to_state: Paused
+    description: Pause a running campaign.
+
+  - name: ExhaustBudget
+    entity_type: Campaign
+    from_state: Active
+    to_state: Ended
+    description: Campaign ends when budget is fully exhausted.
+
+  - name: ResumeCampaign
+    entity_type: Campaign
+    from_state: Paused
+    to_state: Active
+    description: Resume a paused campaign.
 
 constraints:
   - name: BudgetAvailable
-    rule: requested_spend <= remaining_budget
+    applies_to: ActivateCampaign
+    rule: remaining_budget > 0
+    description: Campaign cannot be activated without available budget.
+    on_violation: DENY
 
-  - name: DailyBudgetLimit
-    rule: today_spend <= daily_budget_limit
+  - name: AudiencePolicyCleared
+    applies_to: ActivateCampaign
+    rule: audience_policy_risk != high
+    description: Campaigns with high audience policy risk require manual review before activation.
+    on_violation: ESCALATE
+
+  - name: BudgetNotExhausted
+    applies_to: ResumeCampaign
+    rule: remaining_budget > 0
+    description: A campaign with no remaining budget cannot be resumed.
+    on_violation: DENY

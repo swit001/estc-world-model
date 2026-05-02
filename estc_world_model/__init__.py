@@ -11,7 +11,7 @@ from .runtime import WorldModel
 from .loader import load_world_from_yaml
 from .parser import RuleParseError, compile_rule
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 __all__ = [
     "CommittedState",
