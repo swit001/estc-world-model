@@ -22,26 +22,6 @@ Tool-calling alone does not make an AI agent production-ready. A tool call can c
 
 `estc-world-model` provides a minimal runtime for that missing layer.
 
-## Runtime flow
-
-```mermaid
-flowchart TD
-    A["WorldModel.propose()"] --> B["Validate<br/>entity · transition · state"]
-    B -->|valid| C["Constraint guards"]
-    B -->|fails| DENY["DENY"]
-    C -->|passed| D["Commit state"]
-    C -->|fails| DE["DENY / ESCALATE"]
-    D --> ALLOW["ALLOW · VerdictOutcome"]
-
-    style A fill:#F2F2EA,stroke:#307FE2,color:#1E2549,stroke-width:2px
-    style B fill:#F2F2EA,stroke:#1E2549,color:#1E2549,stroke-width:1.5px
-    style C fill:#F2F2EA,stroke:#1E2549,color:#1E2549,stroke-width:1.5px
-    style D fill:#F2F2EA,stroke:#1E2549,color:#1E2549,stroke-width:1.5px
-    style ALLOW fill:#EAF8F1,stroke:#26C981,color:#1E2549,stroke-width:2px
-    style DENY fill:#FFF0EC,stroke:#F7694C,color:#1E2549,stroke-width:2px
-    style DE fill:#FFF8D6,stroke:#FFDD29,color:#1E2549,stroke-width:2px
-```
-
 ## Installation
 
 ```bash
@@ -51,7 +31,7 @@ pip install estc-world-model
 For local development:
 
 ```bash
-git clone https://github.com/swit001/estc-world-model.git
+git clone https://github.com/YOUR_ORG/estc-world-model.git
 cd estc-world-model
 pip install -e .
 ```
@@ -130,22 +110,6 @@ Example output:
   "audit_ref": "audit_...",
   "message": "Transition committed by customer_456."
 }
-```
-
-## ESTC relationship
-
-```mermaid
-graph TD
-    E["Entity<br/>executable object"] -->|occupies| S["State<br/>committed coordinate"]
-    T["Transition<br/>declared path"] -->|entity_type| E
-    T -->|from / to| S
-    C["Constraint<br/>guard predicate"] -->|guards| T
-    C -->|evaluates| E
-
-    style E fill:#F2F2EA,stroke:#307FE2,color:#1E2549,stroke-width:2px
-    style S fill:#EAF8F1,stroke:#26C981,color:#1E2549,stroke-width:2px
-    style T fill:#F2F2EA,stroke:#1E2549,color:#1E2549,stroke-width:1.5px
-    style C fill:#FFF8D6,stroke:#FFDD29,color:#1E2549,stroke-width:2px
 ```
 
 ## Core concepts
@@ -245,13 +209,7 @@ This repository starts with a minimal commerce refund example implemented entire
 python examples/commerce_refund/demo.py
 ```
 
-YAML world definitions are supported from v0.2.0.
-
-Run the YAML-based demo:
-
-```bash
-python examples/commerce_refund/demo_yaml.py
-```
+Declarative YAML world definitions are intentionally not included in `examples/` yet. A YAML loader is planned for `0.2.0`; until then, the executable source of truth is the Python API.
 
 Planned examples:
 
@@ -264,60 +222,18 @@ Planned examples:
 - [x] Pydantic models for Entity, Transition, Constraint, VerdictOutcome
 - [x] Minimal transition validation and commit runtime
 - [x] Commerce refund example
-- [x] Marketing budget example
-- [x] YAML loader for declarative world definitions
-- [ ] CLI: `estc validate world.yaml`
+- [ ] YAML loader for declarative world definitions
 - [ ] JSON Schema export
 - [ ] Belief vs committed state example
 - [ ] NWM → SWM runtime demo
-- [ ] Domain templates for commerce and marketing
+- [x] CLI: `estc validate world.yaml`
+- [ ] Domain templates for commerce, marketing, and HR
 
+## Relationship to Agentic World Model
 
-## YAML loader
+`agentic-world-model` is the map. `estc-world-model` is the engine.
 
-`estc-world-model` can load declarative ESTC world definitions from YAML.
-
-```python
-from estc_world_model import Entity, load_world_from_yaml
-
-order = Entity(
-    id="order_123",
-    type="Order",
-    state="Delivered",
-    attributes={
-        "days_since_delivery": 5,
-        "item_refundable": True,
-        "refund_status": "none",
-    },
-)
-
-world = load_world_from_yaml(
-    "examples/commerce_refund/world.yaml",
-    entities=[order],
-)
-
-verdict = world.propose(
-    entity_id="order_123",
-    transition="RequestRefund",
-)
-```
-
-YAML constraint rules use a deliberately small safe expression subset:
-
-- `field == value`
-- `field != value`
-- `field <= value`
-- `field >= value`
-- `field < value`
-- `field > value`
-
-No `eval()` is used. Rules are parsed into explicit Python callables.
-
-## Design Companion
-
-This repository is the runtime engine for executable world models.
-
-If [`agentic-world-model`](https://github.com/swit001/agentic-world-model) is the canvas for designing the world, `estc-world-model` is the engine that turns Entity-State-Transition-Constraint design into executable agent behavior.
+The Agentic World Model framework defines the methodology, canvas, and design language for agentic systems. `estc-world-model` implements the minimal executable layer: entities, states, transitions, constraints, commits, and verdicts.
 
 ## License
 
