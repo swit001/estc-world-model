@@ -293,6 +293,8 @@ Schemas are generated from Pydantic v2 models and can be used with any JSON Sche
 
 ## Roadmap
 
+### Completed
+
 - [x] Pydantic models for Entity, Transition, Constraint, VerdictOutcome
 - [x] Minimal transition validation and commit runtime
 - [x] Commerce refund example
@@ -302,6 +304,13 @@ Schemas are generated from Pydantic v2 models and can be used with any JSON Sche
 - [x] JSON Schema export
 - [x] Belief vs committed state example
 - [x] Minimal NWM → SWM demo
+
+### Next open-source directions
+
+- [ ] Multi-entity world support
+- [ ] Cross-entity constraints
+- [ ] Additional example worlds
+- [ ] Minimal NWM/SWM orchestration example
 
 ## CLI
 
