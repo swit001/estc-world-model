@@ -253,6 +253,12 @@ Run the YAML-based demo:
 python examples/commerce_refund/demo_yaml.py
 ```
 
+The [belief vs committed state](examples/belief_vs_committed/) example shows why NWM belief cannot be treated as fact — a neural layer proposes `RequestRefund` on an order it believes is `Delivered`, but the symbolic world finds the committed state is `Shipped` and denies the transition.
+
+```bash
+python examples/belief_vs_committed/demo.py
+```
+
 Planned examples:
 
 - Commerce: order cancellation, refund request, partial return
@@ -294,8 +300,8 @@ Schemas are generated from Pydantic v2 models and can be used with any JSON Sche
 - [x] YAML loader for declarative world definitions
 - [x] CLI: `estc validate world.yaml`
 - [x] JSON Schema export
-- [ ] Belief vs committed state example
-- [ ] Minimal NWM → SWM demo
+- [x] Belief vs committed state example
+- [x] Minimal NWM → SWM demo
 
 ## CLI
 

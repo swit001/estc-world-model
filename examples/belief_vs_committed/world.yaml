@@ -1,0 +1,35 @@
+world:
+  name: Belief vs Committed State
+  version: 0.2.0
+
+transitions:
+  - name: RequestRefund
+    entity_type: Order
+    from_state: Delivered
+    to_state: RefundRequested
+    description: Customer requests a refund after delivery.
+
+  - name: ApproveRefund
+    entity_type: Order
+    from_state: RefundRequested
+    to_state: Refunded
+    description: Support agent approves the refund.
+
+  - name: CancelOrder
+    entity_type: Order
+    from_state: Created
+    to_state: Cancelled
+    description: Cancel an order before it is paid.
+
+constraints:
+  - name: RefundWithinWindow
+    applies_to: RequestRefund
+    rule: refund_window_days <= 7
+    description: Refunds are only allowed within 7 days of delivery.
+    on_violation: DENY
+
+  - name: ItemIsRefundable
+    applies_to: RequestRefund
+    rule: item_refundable == true
+    description: The item must be marked as refundable.
+    on_violation: DENY
