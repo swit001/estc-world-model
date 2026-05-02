@@ -334,7 +334,6 @@ Error: Missing required field 'entity_type' in transition: {...}
 
 The validator checks YAML structure, required transition fields, required constraint fields, and safe constraint rule syntax. It does not execute transitions; runtime execution is handled through the Python API.
 
-
 ## YAML loader
 
 `estc-world-model` can load declarative ESTC world definitions from YAML.
@@ -402,6 +401,13 @@ Enterprise extensions:
 This repository is the runtime engine for executable world models.
 
 If [`agentic-world-model`](https://github.com/swit001/agentic-world-model) is the canvas for designing the world, `estc-world-model` is the engine that turns Entity-State-Transition-Constraint design into executable agent behavior.
+
+## World Model Ecosystem
+
+- [Agentic World Model](https://github.com/swit001/agentic-world-model) — map: executable world specification toolkit
+- [ESTC World Model Runtime](https://github.com/swit001/estc-world-model) — engine: Python runtime and schema export
+- [World Model Anti-Patterns](https://github.com/swit001/world-model-anti-patterns) — why it matters: failure catalog
+- [World Debt Detector](https://github.com/swit001/world-debt-detector) — measure it: CLI scanner for implicit world-model debt
 
 ## License
 
