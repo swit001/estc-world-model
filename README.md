@@ -266,11 +266,11 @@ Planned examples:
 - [x] Commerce refund example
 - [x] Marketing budget example
 - [x] YAML loader for declarative world definitions
+- [ ] CLI: `estc validate world.yaml`
 - [ ] JSON Schema export
 - [ ] Belief vs committed state example
 - [ ] NWM → SWM runtime demo
-- [ ] CLI: `estc validate world.yaml`
-- [ ] Domain templates for commerce, marketing, and HR
+- [ ] Domain templates for commerce and marketing
 
 
 ## YAML loader
