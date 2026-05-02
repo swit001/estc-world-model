@@ -12,11 +12,9 @@
 - [x] Belief vs committed state example
 - [x] Minimal NWM → SWM demo
 
-## Planned
+## Next open-source directions
 
-- [ ] Multi-entity world support (cross-entity constraints)
-- [ ] Commerce: order cancellation, partial return
-- [ ] Marketing: campaign budget exhaustion, creative approval, audience overlap
-- [ ] Full NWM/SWM orchestration (enterprise)
-- [ ] Multi-agent runtime (enterprise)
-- [ ] Production connectors (enterprise)
+- [ ] Multi-entity world support
+- [ ] Cross-entity constraints
+- [ ] Additional example worlds
+- [ ] Minimal NWM/SWM orchestration example
