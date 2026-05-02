@@ -1,0 +1,12 @@
+transitions:
+  - name: AllocateBudget
+    entity_type: Campaign
+    from_state: Active
+    to_state: BudgetAllocated
+
+constraints:
+  - name: BudgetAvailable
+    rule: requested_spend <= remaining_budget
+
+  - name: DailyBudgetLimit
+    rule: today_spend <= daily_budget_limit

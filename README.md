@@ -265,6 +265,7 @@ Planned examples:
 - [x] Minimal transition validation and commit runtime
 - [x] Commerce refund example
 - [x] Marketing budget example
+- [x] Marketing budget YAML example
 - [x] YAML loader for declarative world definitions
 - [ ] JSON Schema export
 - [ ] Belief vs committed state example
