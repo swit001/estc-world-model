@@ -1,0 +1,181 @@
+{
+  "$defs": {
+    "CommittedState": {
+      "properties": {
+        "entity_id": {
+          "title": "Entity Id",
+          "type": "string"
+        },
+        "entity_type": {
+          "title": "Entity Type",
+          "type": "string"
+        },
+        "previous_state": {
+          "title": "Previous State",
+          "type": "string"
+        },
+        "current_state": {
+          "title": "Current State",
+          "type": "string"
+        },
+        "committed_at": {
+          "title": "Committed At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "entity_id",
+        "entity_type",
+        "previous_state",
+        "current_state"
+      ],
+      "title": "CommittedState",
+      "type": "object"
+    },
+    "GuardResult": {
+      "description": "Structured result of a constraint or guard evaluation.",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "passed": {
+          "title": "Passed",
+          "type": "boolean"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reason"
+        }
+      },
+      "required": [
+        "name",
+        "passed"
+      ],
+      "title": "GuardResult",
+      "type": "object"
+    },
+    "VerdictStatus": {
+      "enum": [
+        "ALLOW",
+        "DENY",
+        "ESCALATE"
+      ],
+      "title": "VerdictStatus",
+      "type": "string"
+    }
+  },
+  "description": "The formal decision returned by the world model runtime.",
+  "properties": {
+    "status": {
+      "$ref": "#/$defs/VerdictStatus"
+    },
+    "requested_transition": {
+      "title": "Requested Transition",
+      "type": "string"
+    },
+    "entity_id": {
+      "title": "Entity Id",
+      "type": "string"
+    },
+    "approved_action": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Approved Action"
+    },
+    "rejected_action": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Rejected Action"
+    },
+    "next_state": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Next State"
+    },
+    "guards_passed": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Guards Passed",
+      "type": "array"
+    },
+    "guard_result": {
+      "items": {
+        "$ref": "#/$defs/GuardResult"
+      },
+      "title": "Guard Result",
+      "type": "array"
+    },
+    "committed_state": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/CommittedState"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "alternatives": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Alternatives",
+      "type": "array"
+    },
+    "audit_ref": {
+      "title": "Audit Ref",
+      "type": "string"
+    },
+    "message": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Message"
+    }
+  },
+  "required": [
+    "status",
+    "requested_transition",
+    "entity_id"
+  ],
+  "title": "VerdictOutcome",
+  "type": "object"
+}

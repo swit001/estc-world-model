@@ -1,0 +1,41 @@
+world:
+  name: Commerce Refund World
+  version: 0.2.0
+
+transitions:
+  - name: RequestRefund
+    entity_type: Order
+    from_state: Delivered
+    to_state: RefundRequested
+    description: Customer requests a refund after delivery.
+
+  - name: ApproveRefund
+    entity_type: Order
+    from_state: RefundRequested
+    to_state: Refunded
+    description: Support agent approves the refund.
+
+  - name: RejectRefund
+    entity_type: Order
+    from_state: RefundRequested
+    to_state: Delivered
+    description: Support agent rejects the refund request.
+
+constraints:
+  - name: RefundWithinSevenDays
+    applies_to: RequestRefund
+    rule: days_since_delivery <= 7
+    description: Refunds are allowed only within 7 days after delivery.
+    on_violation: DENY
+
+  - name: ItemIsRefundable
+    applies_to: RequestRefund
+    rule: item_refundable == true
+    description: The item must be marked as refundable.
+    on_violation: DENY
+
+  - name: NoDuplicateRefund
+    applies_to: RequestRefund
+    rule: refund_status == none
+    description: A refund request must not already exist.
+    on_violation: DENY

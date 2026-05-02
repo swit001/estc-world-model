@@ -1,0 +1,153 @@
+{
+  "$defs": {
+    "ConstraintSpec": {
+      "description": "A constraint declaration as written in world.yaml.",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "applies_to": {
+          "title": "Applies To",
+          "type": "string"
+        },
+        "rule": {
+          "title": "Rule",
+          "type": "string"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        },
+        "on_violation": {
+          "$ref": "#/$defs/VerdictStatus",
+          "default": "DENY"
+        }
+      },
+      "required": [
+        "name",
+        "applies_to",
+        "rule"
+      ],
+      "title": "ConstraintSpec",
+      "type": "object"
+    },
+    "TransitionSpec": {
+      "description": "A transition declaration as written in world.yaml.",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "entity_type": {
+          "title": "Entity Type",
+          "type": "string"
+        },
+        "from_state": {
+          "title": "From State",
+          "type": "string"
+        },
+        "to_state": {
+          "title": "To State",
+          "type": "string"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        }
+      },
+      "required": [
+        "name",
+        "entity_type",
+        "from_state",
+        "to_state"
+      ],
+      "title": "TransitionSpec",
+      "type": "object"
+    },
+    "VerdictStatus": {
+      "enum": [
+        "ALLOW",
+        "DENY",
+        "ESCALATE"
+      ],
+      "title": "VerdictStatus",
+      "type": "string"
+    },
+    "WorldMeta": {
+      "description": "Top-level metadata block from a world.yaml file.",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Version"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "WorldMeta",
+      "type": "object"
+    }
+  },
+  "description": "JSON-serializable representation of a declarative world.yaml file.",
+  "properties": {
+    "world": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/WorldMeta"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "transitions": {
+      "items": {
+        "$ref": "#/$defs/TransitionSpec"
+      },
+      "title": "Transitions",
+      "type": "array"
+    },
+    "constraints": {
+      "items": {
+        "$ref": "#/$defs/ConstraintSpec"
+      },
+      "title": "Constraints",
+      "type": "array"
+    }
+  },
+  "required": [
+    "transitions"
+  ],
+  "title": "WorldSpec",
+  "type": "object"
+}
