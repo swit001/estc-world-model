@@ -16,7 +16,7 @@ from .loader import load_world_from_yaml
 from .parser import RuleParseError, compile_rule
 from .schema import verdict_schema, world_schema
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"
 
 __all__ = [
     "CommittedState",
