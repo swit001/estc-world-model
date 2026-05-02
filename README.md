@@ -257,7 +257,6 @@ Planned examples:
 
 - Commerce: order cancellation, refund request, partial return
 - Marketing: campaign budget exhaustion, creative approval, audience overlap
-- HR: candidate pipeline, interview scheduling, offer approval
 
 ## Roadmap
 
