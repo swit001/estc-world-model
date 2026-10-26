@@ -53,6 +53,12 @@ For local development:
 ```bash
 git clone https://github.com/swit001/estc-world-model.git
 cd estc-world-model
+
+# Create and activate a virtual environment
+python3 -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Install in editable mode
 pip install -e .
 ```
 
